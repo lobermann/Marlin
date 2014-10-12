@@ -23,7 +23,7 @@
 // startup. Implementation of an idea by Prof Braino to inform user that any changes made to this
 // build by the user have been successfully uploaded into firmware.
 #define STRING_VERSION_CONFIG_H __DATE__ " " __TIME__ // build date and time
-#define STRING_CONFIG_H_AUTHOR "(none, default config)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "Lukas Obermann" // Who made the changes.
 
 // SERIAL_PORT selects which serial port should be used for communication with the host.
 // This allows the connection of wireless adapters (for instance) to non-default port pins.
@@ -82,7 +82,7 @@
 // 999 = Leapfrog
 
 #ifndef MOTHERBOARD
-#define MOTHERBOARD 7
+#define MOTHERBOARD 81
 #endif
 
 // Define this to set a custom name for your generic Mendel,
@@ -142,10 +142,10 @@
 // 147 is Pt100 with 4k7 pullup
 // 110 is Pt100 with 1k pullup (non standard)
 
-#define TEMP_SENSOR_0 -1
-#define TEMP_SENSOR_1 -1
-#define TEMP_SENSOR_2 0
-#define TEMP_SENSOR_BED 0
+#define TEMP_SENSOR_0 1
+#define TEMP_SENSOR_1 1
+#define TEMP_SENSOR_2 1
+#define TEMP_SENSOR_BED 1
 
 // This makes temp sensor 1 a redundant sensor for sensor 0. If the temperatures difference between these sensors is to high the print will be aborted.
 //#define TEMP_SENSOR_1_AS_REDUNDANT
@@ -185,7 +185,7 @@
 // Comment the following line to disable PID and enable bang-bang.
 #define PIDTEMP
 #define BANG_MAX 255 // limits current to nozzle while in bang-bang mode; 255=full current
-#define PID_MAX 255 // limits current to nozzle while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current
+#define PID_MAX 150 // limits current to nozzle while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current
 #ifdef PIDTEMP
   //#define PID_DEBUG // Sends debug data to the serial port.
   //#define PID_OPENLOOP 1 // Puts PID in open loop. M104/M140 sets the output power from 0 to PID_MAX
@@ -197,9 +197,9 @@
 
 // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 // Ultimaker
-    #define  DEFAULT_Kp 22.2
-    #define  DEFAULT_Ki 1.08
-    #define  DEFAULT_Kd 114
+    #define  DEFAULT_Kp 46.13
+    #define  DEFAULT_Ki 5.42
+    #define  DEFAULT_Kd 98.26
 
 // MakerGear
 //    #define  DEFAULT_Kp 7.0
@@ -285,15 +285,15 @@ your extruder heater takes 2 minutes to hit the target on heating.
 // uncomment the 2 defines below:
 
 // Parameters for all extruder heaters
-//#define THERMAL_RUNAWAY_PROTECTION_PERIOD 40 //in seconds
-//#define THERMAL_RUNAWAY_PROTECTION_HYSTERESIS 4 // in degree Celsius
+#define THERMAL_RUNAWAY_PROTECTION_PERIOD 40 //in seconds
+#define THERMAL_RUNAWAY_PROTECTION_HYSTERESIS 4 // in degree Celsius
 
 // If you want to enable this feature for your bed heater,
 // uncomment the 2 defines below:
 
 // Parameters for the bed heater
-//#define THERMAL_RUNAWAY_PROTECTION_BED_PERIOD 20 //in seconds
-//#define THERMAL_RUNAWAY_PROTECTION_BED_HYSTERESIS 2 // in degree Celsius
+#define THERMAL_RUNAWAY_PROTECTION_BED_PERIOD 20 //in seconds
+#define THERMAL_RUNAWAY_PROTECTION_BED_HYSTERESIS 2 // in degree Celsius
 //===========================================================================
 
 
@@ -309,11 +309,11 @@ your extruder heater takes 2 minutes to hit the target on heating.
 
 #ifndef ENDSTOPPULLUPS
   // fine endstop settings: Individual pullups. will be ignored if ENDSTOPPULLUPS is defined
-  // #define ENDSTOPPULLUP_XMAX
-  // #define ENDSTOPPULLUP_YMAX
-  // #define ENDSTOPPULLUP_ZMAX
-  // #define ENDSTOPPULLUP_XMIN
-  // #define ENDSTOPPULLUP_YMIN
+  #define ENDSTOPPULLUP_XMAX
+  #define ENDSTOPPULLUP_YMAX
+  #define ENDSTOPPULLUP_ZMAX
+  #define ENDSTOPPULLUP_XMIN
+  #define ENDSTOPPULLUP_YMIN
   // #define ENDSTOPPULLUP_ZMIN
 #endif
 
@@ -327,12 +327,12 @@ your extruder heater takes 2 minutes to hit the target on heating.
 #endif
 
 // The pullups are needed if you directly connect a mechanical endswitch between the signal and ground pins.
-const bool X_MIN_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
-const bool Y_MIN_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
-const bool Z_MIN_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
-const bool X_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
-const bool Y_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
-const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
+const bool X_MIN_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
+const bool Y_MIN_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
+const bool Z_MIN_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
+const bool X_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
+const bool Y_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
+const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
 //#define DISABLE_MAX_ENDSTOPS
 //#define DISABLE_MIN_ENDSTOPS
 
@@ -350,12 +350,12 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 // Disables axis when it's not being used.
 #define DISABLE_X false
 #define DISABLE_Y false
-#define DISABLE_Z false
+#define DISABLE_Z true
 #define DISABLE_E false // For all extruders
 #define DISABLE_INACTIVE_EXTRUDER true //disable only inactive extruders and keep active extruder enabled
 
 #define INVERT_X_DIR true    // for Mendel set to false, for Orca set to true
-#define INVERT_Y_DIR false    // for Mendel set to true, for Orca set to false
+#define INVERT_Y_DIR true    // for Mendel set to true, for Orca set to false
 #define INVERT_Z_DIR true     // for Mendel set to false, for Orca set to true
 #define INVERT_E0_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
 #define INVERT_E1_DIR false    // for direct drive extruder v9 set to true, for geared extruder set to false
@@ -371,11 +371,11 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 #define max_software_endstops true  // If true, axis won't move to coordinates greater than the defined lengths below.
 
 // Travel limits after homing
-#define X_MAX_POS 205
+#define X_MAX_POS 100
 #define X_MIN_POS 0
-#define Y_MAX_POS 205
+#define Y_MAX_POS 100
 #define Y_MIN_POS 0
-#define Z_MAX_POS 200
+#define Z_MAX_POS 100
 #define Z_MIN_POS 0
 
 #define X_MAX_LENGTH (X_MAX_POS - X_MIN_POS)
@@ -383,7 +383,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 #define Z_MAX_LENGTH (Z_MAX_POS - Z_MIN_POS)
 //============================= Bed Auto Leveling ===========================
 
-//#define ENABLE_AUTO_BED_LEVELING // Delete the comment to enable (remove // at the start of the line)
+#define ENABLE_AUTO_BED_LEVELING // Delete the comment to enable (remove // at the start of the line)
 #define Z_PROBE_REPEATABILITY_TEST  // If not commented out, Z-Probe Repeatability test will be included if Auto Bed Leveling is Enabled.
 
 #ifdef ENABLE_AUTO_BED_LEVELING
@@ -408,14 +408,14 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
   #ifdef AUTO_BED_LEVELING_GRID
 
     // set the rectangle in which to probe
-    #define LEFT_PROBE_BED_POSITION 15
-    #define RIGHT_PROBE_BED_POSITION 170
-    #define BACK_PROBE_BED_POSITION 180
-    #define FRONT_PROBE_BED_POSITION 20
+    #define LEFT_PROBE_BED_POSITION 5
+    #define RIGHT_PROBE_BED_POSITION 95
+    #define BACK_PROBE_BED_POSITION 95
+    #define FRONT_PROBE_BED_POSITION 5
 
      // set the number of grid points per dimension
      // I wouldn't see a reason to go above 3 (=9 probing points on the bed)
-    #define AUTO_BED_LEVELING_GRID_POINTS 2
+    #define AUTO_BED_LEVELING_GRID_POINTS 3
 
 
   #else  // not AUTO_BED_LEVELING_GRID
@@ -433,16 +433,16 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 
 
   // these are the offsets to the probe relative to the extruder tip (Hotend - Probe)
-  #define X_PROBE_OFFSET_FROM_EXTRUDER -25
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER -29
-  #define Z_PROBE_OFFSET_FROM_EXTRUDER -12.35
+  #define X_PROBE_OFFSET_FROM_EXTRUDER 5
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER 0
+  #define Z_PROBE_OFFSET_FROM_EXTRUDER -0.3
 
-  #define Z_RAISE_BEFORE_HOMING 4       // (in mm) Raise Z before homing (G28) for Probe Clearance.
+  #define Z_RAISE_BEFORE_HOMING 1       // (in mm) Raise Z before homing (G28) for Probe Clearance.
                                         // Be sure you have this distance over your Z_MAX_POS in case
 
-  #define XY_TRAVEL_SPEED 8000         // X and Y axis travel speed between probes, in mm/min
+  #define XY_TRAVEL_SPEED 5000         // X and Y axis travel speed between probes, in mm/min
 
-  #define Z_RAISE_BEFORE_PROBING 15    //How much the extruder will be raised before traveling to the first probing point.
+  #define Z_RAISE_BEFORE_PROBING 1    //How much the extruder will be raised before traveling to the first probing point.
   #define Z_RAISE_BETWEEN_PROBINGS 5  //How much the extruder will be raised when traveling from between next probing points
 
   //#define Z_PROBE_SLED // turn on if you have a z-probe mounted on a sled like those designed by Charles Bell
@@ -492,9 +492,9 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 
 // default settings
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {78.7402,78.7402,200.0*8/3,760*1.1}  // default steps per unit for Ultimaker
-#define DEFAULT_MAX_FEEDRATE          {500, 500, 5, 25}    // (mm/sec)
-#define DEFAULT_MAX_ACCELERATION      {9000,9000,100,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for Skeinforge 40+, for older versions raise them a lot.
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {79.86,80.37,3189.42,87.27}  // default steps per unit for Ultimaker
+#define DEFAULT_MAX_FEEDRATE          {100, 100, 5, 14}    // (mm/sec)
+#define DEFAULT_MAX_ACCELERATION      {3000,3000,100,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for Skeinforge 40+, for older versions raise them a lot.
 
 #define DEFAULT_ACCELERATION          3000    // X, Y, Z and E max acceleration in mm/s^2 for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  3000   // X, Y, Z and E max acceleration in mm/s^2 for retracts
@@ -529,10 +529,10 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 // M501 - reads parameters from EEPROM (if you need reset them after you changed them temporarily).
 // M502 - reverts to the default "factory settings".  You still need to store them in EEPROM afterwards if you want to.
 //define this to enable EEPROM support
-//#define EEPROM_SETTINGS
+#define EEPROM_SETTINGS
 //to disable EEPROM Serial responses and decrease program space by ~1700 byte: comment this out:
 // please keep turned on if you can.
-//#define EEPROM_CHITCHAT
+#define EEPROM_CHITCHAT
 
 // Preheat Constants
 #define PLA_PREHEAT_HOTEND_TEMP 180
@@ -546,7 +546,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 //LCD and SD support
 //#define ULTRA_LCD  //general LCD support, also 16x2
 //#define DOGLCD  // Support for SPI LCD 128x64 (Controller ST7565R graphic Display Family)
-//#define SDSUPPORT // Enable SD Card Support in Hardware Console
+#define SDSUPPORT // Enable SD Card Support in Hardware Console
 //#define SDSLOW // Use slower SD transfer mode (not normally needed - uncomment if you're getting volume init error)
 //#define SD_CHECK_AND_RETRY // Use CRC checks and retries on the SD communication
 //#define ENCODER_PULSES_PER_STEP 1 // Increase if you have a high resolution encoder
