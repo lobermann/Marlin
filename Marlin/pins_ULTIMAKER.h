@@ -26,6 +26,10 @@
 #define Z_MAX_PIN 32
 #define Z_ENABLE_PIN 35
 
+#define Z2_STEP_PIN         49
+#define Z2_DIR_PIN          47
+#define Z2_ENABLE_PIN       48
+
 #define HEATER_BED_PIN 4
 #define TEMP_BED_PIN 10
 
@@ -69,8 +73,8 @@
     #define LCD_PINS_D7 6
 
     //buttons are directly attached
-    #define BTN_EN1 40
-    #define BTN_EN2 42
+    #define BTN_EN1 42
+    #define BTN_EN2 40
     #define BTN_ENC 19  //the click
 
     #define SDCARDDETECT 38
