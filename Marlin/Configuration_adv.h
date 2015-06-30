@@ -340,7 +340,7 @@
 // @section more
 
 // The hardware watchdog should reset the microcontroller disabling all outputs, in case the firmware gets stuck and doesn't do temperature regulation.
-//#define USE_WATCHDOG
+#define USE_WATCHDOG
 
 #ifdef USE_WATCHDOG
 // If you have a watchdog reboot in an ArduinoMega2560 then the device will hang forever, as a watchdog reset will leave the watchdog on.
@@ -357,7 +357,7 @@
 // Babystepping enables the user to control the axis in tiny amounts, independently from the normal printing process
 // it can e.g. be used to change z-positions in the print startup phase in real-time
 // does not respect endstops!
-#define BABYSTEPPING
+//#define BABYSTEPPING
 #ifdef BABYSTEPPING
   #define BABYSTEP_XY  //not only z, but also XY in the menu. more clutter, more functions
   #define BABYSTEP_INVERT_Z false  //true for inverse movements in Z
@@ -376,9 +376,9 @@
 #define ADVANCE
 
 #ifdef ADVANCE
-  #define EXTRUDER_ADVANCE_K .03
-  #define D_FILAMENT 2.85
-  #define STEPS_MM_E 836
+  #define EXTRUDER_ADVANCE_K .01
+  #define D_FILAMENT 1.75
+  #define STEPS_MM_E 1750
 #endif
 
 // @section extras
